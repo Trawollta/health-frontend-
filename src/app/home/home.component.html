@@ -1,0 +1,13 @@
+<div>
+    <p>Sind Sie auf der Suche nach einem Arzt?</p>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Arzt suchen..." (input)="searchDoctors()" />
+    
+    <div class="doctor-list">
+        <div *ngFor="let doctor of filteredDoctors">
+          <a [routerLink]="['/doctor', doctor.id]">{{ doctor.name }}</a> - {{ doctor.specialty }}
+        </div>
+      </div>
+      </div>
+    <div *ngIf="filteredDoctors.length === 0">
+      <p>Kein Arzt gefunden.</p>
+    </div>

@@ -1,0 +1,14 @@
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  .doctor-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    animation: fadeInOut 3s infinite;
+    text-align: center;
+  }

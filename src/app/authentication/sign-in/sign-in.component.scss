@@ -1,0 +1,145 @@
+/* Gesamtstil des Formulars */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; /* Heller Hintergrund */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sanfter Schatten für einen moderneren Look */
+    width: 100%;
+    max-width: 400px; /* Maximalbreite für kleinere Bildschirme */
+  }
+  
+  /* Input-Felder */
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  
+    .mat-input-element {
+      background-color: #f9f9f9; /* Leicht grauer Hintergrund */
+      color: #000000; /* Dunkler Text */
+      padding: 12px;
+      border-radius: 4px; /* Runde Ecken */
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* Leichter innerer Schatten */
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+  
+    .mat-form-field-label {
+      color: #616161; /* Standard Label-Farbe */
+      font-weight: 600; /* Etwas dicker für bessere Lesbarkeit */
+    }
+  
+    .mat-form-field-underline {
+      background-color: #3f51b5; /* Primärfarbe für die Unterstreichung */
+    }
+  
+    .mat-form-field-ripple {
+      background-color: #3f51b5; /* Primärfarbe für den Ripple-Effekt */
+    }
+  
+    /* Fokus-Effekt */
+    .mat-input-element:focus {
+      background-color: #ffffff; /* Weißer Hintergrund bei Fokus */
+      box-shadow: 0 0 4px rgba(63, 81, 181, 0.3); /* Leichter blauer Fokus-Schatten */
+    }
+  }
+  
+  /* Fehlernachrichten klarer hervorheben */
+  .mat-error {
+    color: #f44336; /* Fehlerfarbe (Rot) */
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Button-Styling */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #3f51b5; /* Primärfarbe */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      background-color: #303f9f; /* Dunklere Primärfarbe bei Hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Erhöhte Tiefe bei Hover */
+    }
+  
+    &:disabled {
+      background-color: #e0e0e0; /* Hellgrau für deaktivierten Button */
+      color: #9e9e9e;
+    }
+  }
+  
+  /* Erfolgsmeldung stilisieren */
+  .success-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+    padding: 10px;
+    margin-top: 16px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Passwort vergessen Link */
+  .forgot-pw {
+    margin-top: 16px;
+    text-align: center;
+  }
+  
+  .forgot-pw a {
+    color: #3f51b5;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-pw a:hover {
+    color: #303f9f; /* Dunklere Primärfarbe bei Hover */
+    text-decoration: underline;
+  }
+  
+  /* Registrierung Link */
+  .signup-container {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  .signup-container span {
+    font-size: 14px;
+  }
+  
+  .signup-container a {
+    color: #3f51b5;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .signup-container a:hover {
+    color: #303f9f; /* Dunklere Primärfarbe bei Hover */
+    text-decoration: underline;
+  }
+  
+  /* Mobile Optimierung */
+  @media (max-width: 600px) {
+    form {
+      padding: 10px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  
+    .mat-form-field {
+      margin-bottom: 12px;
+    }
+  }
+  

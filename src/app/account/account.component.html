@@ -1,0 +1,36 @@
+<div *ngIf="user">
+    <h2>Profil bearbeiten</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+      
+      <div>
+        <label for="address">Adresse</label>
+        <input id="address" formControlName="address" type="text">
+      </div>
+  
+      <div>
+        <label for="postalCode">PLZ</label>
+        <input id="postalCode" formControlName="postalCode" type="text">
+      </div>
+  
+      <div>
+        <label for="city">Ort</label>
+        <input id="city" formControlName="city" type="text">
+      </div>
+  
+      <div>
+        <label for="healthInsurance">Krankenkasse</label>
+        <input id="healthInsurance" formControlName="healthInsurance" type="text">
+      </div>
+  
+      <div>
+        <label for="insuranceType">Versicherungsart</label>
+        <select id="insuranceType" formControlName="insuranceType">
+          <option value="Privat">Privat</option>
+          <option value="Gesetzlich">Gesetzlich</option>
+        </select>
+      </div>
+  
+      <button type="submit">Speichern</button>
+    </form>
+  </div>
+  

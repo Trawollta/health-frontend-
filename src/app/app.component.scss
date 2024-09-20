@@ -1,0 +1,45 @@
+.overview {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px auto 80px;
+    grid-template-areas:
+      "header"
+      "main-content"
+      "nav-bar";
+  }
+  
+  app-header {
+    height: 80px;
+    grid-area: header;
+  }
+  
+  .main-content {
+    height: calc(100vh - 80px - 80px - 8px);
+    height: calc(100dvh - 80px - 80px - 8px);
+    overflow-y: auto;
+    grid-area: main-content;
+  }
+  
+  app-navigation {
+    height: 80px;
+    grid-area: nav-bar;
+    background-color: #2a3647;
+  }
+  
+  @media (min-width: 900px) {
+    .overview {
+      grid-template-columns: repeat(4, 1fr);
+      // grid-template-rows: 80px auto 80px;
+      grid-template-areas:
+        "nav-bar header header header"
+        "nav-bar main-content main-content main-content"
+        "nav-bar main-content main-content main-content";
+    }
+  
+    .main-content {
+      height: calc(100vh - 80px - 4px);
+      height: calc(100dvh - 80px - 4px);
+    }
+  }
+  
