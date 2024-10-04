@@ -1,38 +1,8 @@
-<div *ngIf="doctor" class="doctor-card">
-    <h2>{{ doctor.name }}</h2>
-    <p><strong>Spezialisierung:</strong> {{ doctor.specialty }}</p>
-    <p><strong>Email:</strong> {{ doctor.email }}</p>
-    <p><strong>Telefon:</strong> {{ doctor.phone }}</p>
-    <p><strong>Adresse:</strong> {{ doctor.street }}, {{ doctor.town }} {{ doctor.postal_code }}</p>
-
-    <!-- Sichtbare Zeit-Slots -->
-    <div class="time-slot-container">
-        <p><strong>Verfügbare Zeit-Slots:</strong></p>
-        <div *ngIf="availableTimeSlots.length > 0">
-            <div *ngFor="let slot of availableTimeSlots" class="time-slot">
-                <button (click)="selectTimeSlot(slot)">
-                    {{ slot.start | date:'shortTime' }} - {{ slot.end | date:'shortTime' }}
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <form (ngSubmit)="bookAppointment()">
-        <div>
-            <label for="patientName">Name:</label>
-            <input type="text" id="patientName" [(ngModel)]="patientName" name="patientName" required>
-        </div>
-
-        <div>
-            <label for="patientEmail">Email:</label>
-            <input type="email" id="patientEmail" [(ngModel)]="patientEmail" name="patientEmail" required>
-        </div>
-
-        <!-- Der ausgewählte Zeit-Slot -->
-        <div *ngIf="appointmentTime">
-            <p>Gewählter Termin: {{ appointmentTime | date:'shortTime' }}</p>
-        </div>
-
-        <button type="submit" [disabled]="!appointmentTime">Termin buchen</button>
-    </form>
+<div *ngIf="doctor">
+  <h2>{{ doctor.name }}</h2>  <!-- Der Name wird nur einmal angezeigt -->
+  <img [src]="doctor.profile_picture" alt="{{ doctor.name }}" class="doctor-image">
+  <p>{{ doctor.specialty }}</p>
+  <p>Rating: {{ doctor.rating }}</p>
+  <p>Erfahrung: {{ doctor.experience }} Jahre</p>
+  <button (click)="goToAppointments()">Termin vereinbaren</button>
 </div>

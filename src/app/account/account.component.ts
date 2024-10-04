@@ -1,55 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../service/user.service';
-import { User } from '../models/user';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../service/auth-service';
+import { UserProfile } from '../models/UserProfile';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  profileForm: FormGroup;  // Formular für die Profildaten
-  user: User | undefined;
+  profileForm: FormGroup;
+  successMessage: string | null = null;  // Deklaration der Variablen
+  errorMessage: string | null = null;
+  user: UserProfile | undefined;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.profileForm = this.fb.group({
-      address: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      city: ['', Validators.required],
-      healthInsurance: ['', Validators.required],
-      insuranceType: ['', Validators.required],  // Privat oder Gesetzlich
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: [''],
+      postalCode: ['', [Validators.pattern('^[0-9]{5}$')]],
+      city: [''],
+      healthInsurance: [''],
+      insuranceType: ['']
     });
   }
 
   ngOnInit(): void {
-    // Hole vorhandene Benutzerdaten
-    this.userService.getUserData().subscribe(data => {
-      this.user = data;
-      // Fülle das Formular mit den vorhandenen Benutzerdaten
-      this.profileForm.patchValue({
-        address: data.address,
-        postalCode: data.postalCode,
-        city: data.city,
-        healthInsurance: data.healthInsurance,
-        insuranceType: data.insuranceType
-      });
-    });
+    this.authService.getUserData().subscribe(
+      (data: UserProfile) => {
+        this.user = data;
+        this.profileForm.patchValue(data);  // Profildaten ins Formular eintragen
+      },
+      error => {
+        this.errorMessage = 'Fehler beim Laden der Benutzerdaten';
+      }
+    );
   }
 
-  // Methode zum Speichern der Daten
-  saveProfile() {
+  saveProfile(): void {
     if (this.profileForm.valid) {
-      const updatedProfile = this.profileForm.value;
-      this.userService.updateUserProfile(updatedProfile).subscribe(
+      this.authService.updateUserProfile(this.profileForm.value).subscribe(
         response => {
-          alert('Profil erfolgreich aktualisiert!');
+          this.successMessage = 'Profil erfolgreich aktualisiert!';
+          this.errorMessage = null;
         },
         error => {
-          alert('Fehler beim Speichern des Profils.');
+          this.errorMessage = 'Fehler beim Aktualisieren des Profils';
+          this.successMessage = null;
         }
       );
     }

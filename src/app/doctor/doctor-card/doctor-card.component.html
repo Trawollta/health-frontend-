@@ -1,0 +1,15 @@
+<a [routerLink]="['/doctor', doctor.id]" class="doctor-card">
+  <!-- Inhalte der Arztkarte -->
+  <img [src]="doctor.profile_picture" alt="{{ doctor.name }}" class="doctor-image">
+  <h3>{{ doctor.name }}</h3>
+  <p>{{ doctor.specialty }}</p>
+
+  <div class="doctor-info">
+    <div class="rating">
+      <span>⭐</span> {{ doctor.rating }}
+    </div>
+    <div class="experience">
+      <span>🩺</span> {{ doctor.experience }}
+    </div>
+  </div>
+</a>

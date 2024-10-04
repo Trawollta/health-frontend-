@@ -1,13 +1,25 @@
 <div>
-    <p>Sind Sie auf der Suche nach einem Arzt?</p>
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Arzt suchen..." (input)="searchDoctors()" />
-    
-    <div class="doctor-list">
-        <div *ngFor="let doctor of filteredDoctors">
-          <a [routerLink]="['/doctor', doctor.id]">{{ doctor.name }}</a> - {{ doctor.specialty }}
-        </div>
-      </div>
-      </div>
-    <div *ngIf="filteredDoctors.length === 0">
-      <p>Kein Arzt gefunden.</p>
+  <p>Lets find your Doctor</p>
+  <input class="searchbar" type="text" [(ngModel)]="searchTerm" placeholder="Arzt suchen..." (input)="searchDoctors()" />
+
+  <!-- Arztkarten und Karussell in einer Schleife anzeigen -->
+  <div class="doctor-cards">
+    <div *ngFor="let doctor of filteredDoctors; let i = index" [class.active]="i === currentSlide" class="doctor-card">
+      <app-doctor-card [doctor]="doctor"></app-doctor-card>
     </div>
+  </div>
+
+  <!-- Karussell-Steuerung -->
+  <div *ngIf="filteredDoctors.length > 1" class="carousel-controls">
+    <button (click)="prevSlide()">&#10094;</button>
+    <button (click)="nextSlide()">&#10095;</button>
+  </div>
+
+  <!-- Nachricht anzeigen, wenn keine Ärzte gefunden wurden -->
+  <div *ngIf="filteredDoctors.length === 0">
+    <p>Kein Arzt gefunden.</p>
+  </div>
+</div>
+
+<h2>Your Appointment</h2>
+<h2>All Doctors</h2>

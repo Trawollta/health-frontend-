@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../service/auth-service';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SignInComponent implements OnInit {
   signInForm = new FormGroup({
-    username: new FormControl<string>('', [Validators.required]),
+    username: new FormControl<string>('', [Validators.required]),  // Username statt E-Mail
     password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
     remember: new FormControl(false)
   });
@@ -32,16 +32,13 @@ export class SignInComponent implements OnInit {
       const password = this.signInForm.get('password')?.value!;
   
       try {
-        // AuthService für Login aufrufen
         const response = await this.authService.login({ username, password }).toPromise();
   
         if (response && response.token) {
-          // Token speichern und den Benutzer zur HomeComponent weiterleiten
           localStorage.setItem('authToken', response.token);
           this.router.navigate(['/home']);  // Weiterleitung zur HomeComponent
         }
       } catch (error) {
-        // Fehler beim Login behandeln
         this.loginError = 'Login fehlgeschlagen. Bitte überprüfen Sie Ihren Benutzernamen oder Ihr Passwort.';
       }
     }

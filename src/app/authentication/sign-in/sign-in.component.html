@@ -1,32 +1,45 @@
-<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-  <mat-form-field class="example-full-width">
-    <mat-label>Benutzername</mat-label> <!-- Benutzername statt E-Mail -->
-    <input matInput type="text" formControlName="username" placeholder="Dein Benutzername">
-    <mat-error *ngIf="signInForm.get('username')?.hasError('required')">
-      Benutzername ist <strong>erforderlich</strong>.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Passwort</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="******">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen/verbergen'">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <mat-error *ngIf="signInForm.get('password')?.hasError('minlength')">
-      Das Passwort muss mindestens 8 Zeichen lang sein.
-    </mat-error>
-    <mat-error *ngIf="signInForm.get('password')?.hasError('required')">
-      Passwort ist <strong>erforderlich</strong>.
-    </mat-error>
-  </mat-form-field>
-
-  <!-- Fehlernachricht beim Login -->
-  <div *ngIf="loginError" class="error-message">
-    <span>{{ loginError }}</span>
+<div class="login-container">
+  <div class="login-header">
+    <button class="back-button">←</button>
+    <h1>Hey, Let’s Sign in!</h1>
+    <p>Welcome back, You've been missed!</p>
   </div>
 
-  <div class="button-container">
-    <button mat-raised-button color="primary" type="submit" [disabled]="signInForm.invalid">Log in</button>
-  </div>
-</form>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="form-field">
+      <!-- Hier 'username' anstatt 'email' -->
+      <input type="text" id="username" formControlName="username" placeholder="Username">
+    </div>
+
+    <div class="form-field password-field">
+      <input [type]="hide ? 'password' : 'text'" id="password" formControlName="password" placeholder="Password">
+      <button type="button" (click)="hide = !hide" class="toggle-password">
+        👁️
+      </button>
+      <button type="button" class="fingerprint-icon">
+        🔒
+      </button>
+    </div>
+
+    <div class="forgot-password">
+      <a href="/forgot-password">Forgot Password?</a>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" [disabled]="signInForm.invalid">Login →</button>
+    </div>
+
+    <div class="divider">
+      <span>Or Login With</span>
+    </div>
+
+    <div class="google-login">
+      <button class="google-button">Login with Google</button>
+    </div>
+
+    <div class="signup-container">
+      <span>Don’t have an account?</span>
+      <a class="register" href="/register">Register in here</a>
+    </div>
+  </form>
+</div>

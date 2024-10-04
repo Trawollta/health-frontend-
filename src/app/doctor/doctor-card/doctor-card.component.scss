@@ -1,0 +1,52 @@
+.doctor-card {
+  background-color: #fff;  /* Hintergrundfarbe der Karte */
+  border-radius: 10px;     /* Abgerundete Ecken */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Leichter Schatten */
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Übergänge für Hover-Effekt */
+  width: 250px;  /* Feste Breite der Karten */
+
+  &:hover {
+    transform: scale(1.05);  /* Leichte Vergrößerung bei Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Intensiverer Schatten bei Hover */
+  }
+
+  .doctor-image {
+    width: 100px;      /* Größe des Profilbilds */
+    height: 100px;     /* Festgelegte Höhe für gleichmäßige Bilder */
+    border-radius: 50%; /* Runde Bilder */
+    object-fit: cover; /* Bild-Inhalt anpassen */
+    margin-bottom: 15px; /* Abstand zum Text */
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #333; /* Schriftfarbe */
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #777; /* Leicht hellere Schriftfarbe für den Text */
+    margin-bottom: 15px;
+  }
+
+  .doctor-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+    .rating, .experience {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #555;
+
+      span {
+        margin-right: 5px; /* Abstand vor den Symbolen */
+      }
+    }
+  }
+}

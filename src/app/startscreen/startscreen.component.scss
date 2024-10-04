@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.text-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #3a3a3a;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #6c6c6c;
+    margin-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.dot.active {
+    background-color: #3f63f3;
+}
+
+.button-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 350px;
+}
+
+.skip-button {
+    background: none;
+    border: none;
+    color: #6c6c6c;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #3f63f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #3452cc;
+}

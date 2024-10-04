@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Doctor } from '../models/doctors';  // Importiere das Doctor-Interface
+import { Doctor } from '../models/doctors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DoctorService {
-  private apiUrl = 'http://localhost:8000/api/doctors/'; // URL deines Django-Backends
+  private apiUrl = 'http://localhost:8000/api/doctors/';
 
   constructor(private http: HttpClient) {}
 
-  // Methode, um Ärzte vom Backend abzurufen
-  getDoctors(): Observable<Doctor[]> {  // Ändere den Rückgabetyp zu Observable<Doctor[]>
+  getDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.apiUrl);
   }
 
-  // Suchfunktion für Ärzte
   searchDoctors(doctors: Doctor[], searchTerm: string): Doctor[] {
-    searchTerm = searchTerm.trim().toLowerCase();  // Entferne unnötige Leerzeichen und wandle in Kleinbuchstaben um
-  
+    searchTerm = searchTerm.trim().toLowerCase();
     return doctors.filter(doctor => 
       doctor.name.toLowerCase().includes(searchTerm) || 
       doctor.specialty.toLowerCase().includes(searchTerm) || 

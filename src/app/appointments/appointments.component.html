@@ -1,1 +1,43 @@
-<p>appointments works!</p>
+<div *ngIf="appointments.length > 0; else noAppointments">
+  <h2>Termine für Arzt {{ doctorId }}</h2>
+  
+  <div class="schedule-container">
+    <!-- Kalenderansicht mit den verfügbaren Terminen -->
+    <div class="calendar">
+      <button *ngFor="let appointment of appointments" (click)="selectAppointment(appointment)" 
+              [class.selected]="selectedAppointment === appointment">
+        {{ appointment.appointment_time | date:'dd EEE' }}
+      </button>
+    </div>
+    
+    <!-- Slot-Auswahl -->
+    <div class="slots">
+      <h3>Slots</h3>
+      <button (click)="selectSlot('Morning')" [class.selected]="selectedSlot === 'Morning'">Morning</button>
+      <button (click)="selectSlot('Afternoon')" [class.selected]="selectedSlot === 'Afternoon'">Afternoon</button>
+      <button (click)="selectSlot('Evening')" [class.selected]="selectedSlot === 'Evening'">Evening</button>
+    </div>
+    
+    <!-- Uhrzeit-Auswahl -->
+    <div class="times">
+      <h3>Time</h3>
+      <button *ngFor="let time of availableTimes" (click)="selectTime(time)" [class.selected]="selectedTime === time">
+        {{ time }}
+      </button>
+    </div>
+    
+    <!-- Terminart-Auswahl -->
+    <div class="appointment-type">
+      <h3>Appointment Type</h3>
+      <button (click)="selectType('online')" [class.selected]="appointmentType === 'online'">Online</button>
+      <button (click)="selectType('offline')" [class.selected]="appointmentType === 'offline'">Offline</button>
+    </div>
+    
+    <!-- Bestätigungs-Button -->
+    <button (click)="confirmAppointment()" class="confirm-btn">Termin bestätigen</button>
+  </div>
+</div>
+
+<ng-template #noAppointments>
+  <p>Keine Termine gefunden.</p>
+</ng-template>

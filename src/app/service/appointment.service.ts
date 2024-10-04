@@ -7,7 +7,7 @@ import { Appointment } from '../models/appointment';
   providedIn: 'root'
 })
 export class AppointmentService {
-  private apiUrl = 'http://localhost:8000/appointments/book/';  // API-Endpunkt
+  private apiUrl = 'http://localhost:8000/appointments/book/';
 
   constructor(private http: HttpClient) {}
 
@@ -15,4 +15,10 @@ export class AppointmentService {
   bookAppointment(appointment: Appointment): Observable<Appointment> {
     return this.http.post<Appointment>(this.apiUrl, appointment);
   }
+
+  getAppointmentsByDoctor(doctorId: number): Observable<Appointment[]> {
+    const url = `http://localhost:8000/api/available_appointments/${doctorId}/`;  // Die korrekte URL verwenden
+    return this.http.get<Appointment[]>(url);
+  }
+  
 }

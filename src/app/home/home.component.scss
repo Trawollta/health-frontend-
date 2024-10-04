@@ -1,14 +1,40 @@
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  
-  .doctor-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-    animation: fadeInOut 3s infinite;
-    text-align: center;
-  }
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-button:first-of-type {
+  left: -30px;
+}
+
+.carousel-button:last-of-type {
+  right: -30px;
+}
+
+.doctor-cards {
+  display: flex;
+  overflow-x: hidden;  /* Verhindert horizontales Scrollen */
+  scroll-behavior: smooth;  /* Für sanftes Scrollen */
+  gap: 15px;  /* Abstand zwischen den Karten */
+  max-width: 80%;  /* Maximale Breite für die Kartenanzeige */
+}
+
+.doctor-card {
+  flex: 0 0 250px;  /* Feste Breite für jede Karte */
+  transition: transform 0.3s ease;
+}
